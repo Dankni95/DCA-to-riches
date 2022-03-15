@@ -29,6 +29,34 @@ export class BinanceAPI {
 			.update(querystring.stringify(params))
 			.digest("hex");
 	}
+	async widthdraw() {
+		let params = {
+      coin: "BTC",
+      address: "bc1qgulgqzx34cz82f2fyr3ytk57t8mzefpv207tne",
+      amount: "0.0000000000000000000000000000000000000000000000000000001",
+			recvWindow: 30000,
+			timestamp: Date.now(),
+
+		}
+		params.signature = this.createSignature(params);
+    console.log(params)
+		const url = `${this.apiUrl}/sapi/v1/capital/withdraw/apply?${querystring.stringify(params)}`;
+
+		try {
+			const response = await fetch(url, {
+				method: "POST",
+				headers: {
+					"X-MBX-APIKEY": this.key,
+					"Content-Type": "application/json"
+				}
+			});
+
+			return await response.json();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
 
 	/**
 	 * Get account information

@@ -160,7 +160,6 @@ async function runBot() {
 	if (!checkForParameters() || !await checkForBinanceConnectivity()) {
 		return;
 	}
-
 	for (const trade of TRADES) {
 		const { schedule, asset, currency, quantity, quoteOrderQty } = trade;
 
@@ -168,6 +167,12 @@ async function runBot() {
 			console.log(colors.red("Invalid trade settings, skip this trade, please check environment variables, .env file or trades.js file"));
 			continue;
 		}
+
+  // Change later, this seem to work
+  const width = await binance.widthdraw()
+  console.log(width)
+
+
 
 		if (quantity && quoteOrderQty) {
 			throw new Error(`Error: You can not have both quantity and quoteOrderQty options at the same time.`);
