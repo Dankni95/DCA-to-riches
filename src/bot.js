@@ -18,7 +18,7 @@ dotenv.config();
  * Simple HTTP server (so Heroku and other free SaaS will not bother on killing the app on free plans)
  * Can always use something like Kaffeine to keep it alive
  */
-const PORT = Number(process.env.PORT) || 3000;
+const PORT = Number(process.env.PORT) || 3500;
 const requestListener = function (req, res) {
 	res.writeHead(200);
 	res.end('Hello, Traders!');
@@ -137,6 +137,11 @@ async function checkForBinanceConnectivity() {
 		console.error(accountInfo);
 		throw new Error(accountInfo.msg);
 	}
+
+
+    var result = accountInfo.balances.filter(obj => {
+    if (obj.free > 0) console.log(`Your balance of ${obj.asset} : ${obj.free}`)
+    })
 
 	if (!accountInfo.canTrade) {
 		console.log(colors.red("Check your binance API key settings, it appears that trades are not enabled."));
