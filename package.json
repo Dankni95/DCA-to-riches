@@ -11,7 +11,8 @@
     "url": "https://github.com/lukeliasi/binance-dca-bot.git"
   },
   "scripts": {
-    "start": "node src/bot.js"
+    "start": "node src/bot.js",
+    "dev": "nodemon ./src/bot.js localhost 3500"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.4.2",
@@ -31,5 +32,8 @@
     "binance",
     "dollar-cost-averaging",
     "binance-api"
-  ]
+  ],
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
